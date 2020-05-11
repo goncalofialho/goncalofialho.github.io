@@ -126,8 +126,25 @@
       <!-- /.container -->
     </nav>
 
-    <div class="main" style="background-image: url('images/video_bg.jpg');">
-      <video
+    <div class="main">
+      <div style="position: fixed; z-index: -99; width: 100%; height: 100%;">
+        <iframe
+          frameborder="0"
+          height="100%"
+          width="100%"
+          src="https://youtube.com/embed/1gI4IWTJRZM?autoplay=1&controls=0&showinfo=0&autohide=1&controls=0&disablekb=0&mute=1"
+        >
+        </iframe>
+        <!-- <iframe
+          id="ytplayer"
+          type="text/html"
+          width="100%"
+          height="100%"
+          src="http://www.youtube.com/embed/1gI4IWTJRZM?autoplay=1&origin=http://example.com"
+          frameborder="0"
+        /> -->
+      </div>
+      <!-- <video
         id="video_background"
         preload="auto"
         autoplay="true"
@@ -135,10 +152,9 @@
         muted="muted"
         volume="0"
       >
-        <!-- <source src="http://coming-sssoon.paperplane.io/video/time.webm" type="video/webm">  -->
         <source src="videos/costarica.mp4" type="video/mp4" />
         Video not supported
-      </video>
+      </video> -->
       <!--    Change the image source '/images/video_bg.jpg')" with your favourite image.     -->
 
       <div class="cover black" data-color="black"></div>
