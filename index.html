@@ -167,11 +167,11 @@
                     >
                     <input
                       type="text"
-                      class="form-control transparent"
+                      class="form-control transparent spotifyInput"
                       placeholder="Spotify URI..."
                     />
                   </div>
-                  <button type="submit" class="btn btn-warning btn-fill">
+                  <button type="submit" class="btn btn-warning btn-fill spotifySubmit" disabled>
                     Send song
                   </button>
                 </form>
@@ -193,20 +193,5 @@
   </body>
   <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      var iceworker = navigator.serviceWorker
-        .register("./js/worker.min.js")
-        .then(function (reg) {
-          console.log("Icecast service worker registered");
-        })
-        .catch(function (error) {
-          console.warn("Error " + error);
-        });
-    }
-    navigator.serviceWorker.addEventListener("message", (event) => {
-      console.log(event);
-      console.log(event.data.msg);
-    });
-  </script>
+  <script src="js/index.js" type="text/javascript"></script>
 </html>
