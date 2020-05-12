@@ -1,0 +1,19 @@
+{
+  "name": "goncalofialho.github.io",
+  "version": "1.0.0",
+  "description": "![alt text](https://s3.amazonaws.com/creativetim_bucket/products/20/original/coming_sssoon_thumbnail.png \"Coming Soon Page\")",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goncalofialho/goncalofialho.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goncalofialho/goncalofialho.github.io/issues"
+  },
+  "homepage": "https://github.com/goncalofialho/goncalofialho.github.io#readme"
+}
