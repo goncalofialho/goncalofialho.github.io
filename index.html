@@ -163,4 +163,21 @@
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
   <script src="js/index.js" type="text/javascript"></script>
   <script src="scripts/spotifyApi.js" type="text/javascript"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js"></script>
+
+  <script>
+    const changeBackground = () => {
+      const video = document.querySelector('.background-video');
+      const source = video.querySelector('source');
+      source.setAttribute('src', 'videos/backgroundeasteregg.mp4');
+
+      video.appendChild(source);
+      video.load();
+      video.play();
+
+    }
+    const egg = new Egg("up,up,down,down,left,right,left,right,b,a", function() {
+      changeBackground();
+    }).listen();
+    </script>
 </html>
