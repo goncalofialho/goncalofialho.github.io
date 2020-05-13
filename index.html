@@ -62,7 +62,6 @@
         <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
 
         <div class="content">
-          <!-- <h4 class="motto">Enjoy your music.</h4> -->
           <h4 class="current-listeners"></h4>
 
           <video class="player" autoplay controls name="media">
@@ -71,57 +70,11 @@
               type="audio/mpeg"
             />
           </video>
-          <div class="metadata-container loading">
-            <div class="row error-message">
-              <h5>
-                There was an error accessing the API. Try again.
-              </h5>
-            </div>
-            <div class="row current">
-              <h4>Currently playing</h4>
-              <div class="music-detail">
-                <div class="left-side">
-                  <img class="album-cover" />
-                </div>
-                <div class="right-side">
-                  <p class="name"></p>
-                  <p class="artist"></p>
-                  <p class="album"></p>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="row next">
-              <h5>Next up</h5>
-              <div class="music-detail small">
-                <div class="left-side">
-                  <img class="album-cover" />
-                </div>
-                <div class="right-side">
-                  <p class="name"></p>
-                  <p class="artist"></p>
-                  <p class="album"></p>
-                </div>
-              </div>
-            </div> -->
-            <div class="row text-center">
-              <button
-                id="refresh-button"
-                type="submit"
-                class="btn btn-warning btn-fill"
-              >
-                <span
-                  class="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-                Refresh
-              </button>
-            </div>
-          </div>
+
           <div class="subscribe">
-            <h5 class="info-text">
+            <!--<h5 class="info-text">
               Add a new song here.
-            </h5>
+            </h5>-->
             <div class="row">
               <div class="col-12">
                 <form class="form-inline sendSongForm" role="form">
@@ -137,7 +90,7 @@
                   </div>
                   <button
                     type="submit"
-                    class="btn btn-warning btn-fill spotifySubmit"
+                    class="btn btn-fill spotifySubmit"
                     disabled
                   >
                     Send song
@@ -146,38 +99,61 @@
               </div>
             </div>
           </div>
+          <div class="metadata-container loading">
+            <div class="row error-message">
+              <h5>
+                There was an error accessing the API. Try again.
+              </h5>
+            </div>
+            <div class="row current">
+              <h4>Currently playing</h4>
+              <div class="music-detail">
+                <div class="top-side">
+                  <img class="album-cover" />
+                </div>
+                <div class="bottom-side">
+                  <p class="name"></p>
+                  <p class="artist"></p>
+                  <p class="album"></p>
+                </div>
+              </div>
+              <!-- To add a smaller music-detail just add the class "small" -->
+            </div>
+            <div class="row">
+              <button id="refresh-button" type="submit" class="btn btn-fill">
+                Refresh
+                <div class="loader"></div>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- <div class="footer">
-        <div class="container">
-          Made with <i class="fa fa-heart heart"></i> by
-          <a href="http://www.creative-tim.com">Creative Tim</a>. Free download
-          <a href="http://www.creative-tim.com/product/coming-sssoon-page"
-            >here.</a
-          >
-        </div>
-      </div> -->
     </div>
   </body>
   <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
   <script src="js/index.js" type="text/javascript"></script>
   <script src="scripts/spotifyApi.js" type="text/javascript"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js"></script>
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js"
+  ></script>
 
   <script>
     const changeBackground = () => {
-      const video = document.querySelector('.background-video');
-      const source = video.querySelector('source');
-      source.setAttribute('src', 'videos/backgroundeasteregg.mp4');
+      const video = document.querySelector(".background-video");
+      const source = video.querySelector("source");
+      source.setAttribute("src", "videos/backgroundeasteregg.mp4");
 
       video.appendChild(source);
       video.load();
       video.play();
-
-    }
-    const egg = new Egg("up,up,down,down,left,right,left,right,b,a", function() {
-      changeBackground();
-    }).listen();
-    </script>
+    };
+    const egg = new Egg(
+      "up,up,down,down,left,right,left,right,b,a",
+      function () {
+        changeBackground();
+      }
+    ).listen();
+  </script>
 </html>
