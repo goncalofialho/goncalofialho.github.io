@@ -29,6 +29,7 @@ window.onload = () => {
       }).then( res => {
         spotifyInput.value = '';
         spotifyInput.disabled = false;
+        submitSpotifySong.setAttribute('disabled', 'true');
         alert('Song added to the queue!')
       }).catch( res => {
         alert('Something went wrong :(')
