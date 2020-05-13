@@ -23,6 +23,7 @@ window.onload = () => {
           "uri": value
         })
       }).then( res => {
+        spotifyInput.value = '';
         alert('Song added to the queue!')
       }).catch( res => {
         alert('Something went wrong :(')
@@ -50,7 +51,6 @@ const fetchAndPopulateMusicMetadata = (type) => {
   document.querySelector(".metadata-container").classList.remove("error");
   document.querySelector(".metadata-container").classList.add("loading");
   document.querySelector("#refresh-button").disabled = true;
-  console.log("ehee");
   fetch(`${QUEUE_ENDPOINT}${type}`)
     .then((response) => response.json())
     .then((data) => {
