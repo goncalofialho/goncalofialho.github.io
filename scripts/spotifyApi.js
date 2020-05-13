@@ -80,5 +80,5 @@ const fetchAndPopulateMusicMetadata = (type) => {
 
 const refreshData = () => {
   fetchAndPopulateMusicMetadata("current");
-  fetchAndPopulateMusicMetadata("next");
+  // fetchAndPopulateMusicMetadata("next");
 };
