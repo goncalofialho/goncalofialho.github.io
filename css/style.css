@@ -32,7 +32,7 @@
 
   color: white;
   font-size: 14px;
-  box-shadow: 0 0 10px var(--main-black);
+  box-shadow: 0 0 10px var(--main-orange);
 }
 
 .music-detail .left-side {
@@ -72,7 +72,7 @@
 
   color: white;
   font-size: 12px;
-  box-shadow: 0 0 10px var(--main-black);
+  box-shadow: 0 0 10px var(--main-orange);
 }
 
 .music-detail.small .left-side {
