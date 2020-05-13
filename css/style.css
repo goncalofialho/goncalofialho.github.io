@@ -112,3 +112,9 @@
 .sendSongForm {
   text-align: center;
 }
+
+.current-listeners {
+  color: var(--main-yellow);
+  margin: auto;
+  font-size: 2rem;
+}

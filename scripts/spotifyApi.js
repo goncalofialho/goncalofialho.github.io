@@ -82,7 +82,19 @@ const fetchAndPopulateMusicMetadata = (type) => {
     });
 };
 
+const fetchListeners = () => {
+  fetch('https://proxy.zeno.fm/api/stations/f8aqkae5bzzuv/stats/live?include_outputs=true')
+    .then( res => res.json())
+    .then( data => {
+      let count = 0;
+      domListeners = document.querySelector('.current-listeners');
+      data.data.forEach(country => count += country.count);
+      domListeners.innerText = `${count} currently listening`;
+    })
+}
+
 const refreshData = () => {
   fetchAndPopulateMusicMetadata("current");
+  fetchListeners();
   // fetchAndPopulateMusicMetadata("next");
 };
