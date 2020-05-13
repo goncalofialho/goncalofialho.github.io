@@ -6,21 +6,6 @@ window.onload = () => {
     .addEventListener("click", refreshData);
   refreshData();
 
-  if ("serviceWorker" in navigator) {
-    var iceworker = navigator.serviceWorker
-      .register("./js/worker.min.js")
-      .then(function (reg) {
-        console.log("Icecast service worker registered");
-      })
-      .catch(function (error) {
-        console.warn("Error " + error);
-      });
-  }
-  navigator.serviceWorker.addEventListener("message", (event) => {
-    console.log(event);
-    console.log(event.data.msg);
-  });
-
   const submitSpotifySong = document.querySelector('.spotifySubmit');
   const spotifyInput = document.querySelector('.spotifyInput');
 
