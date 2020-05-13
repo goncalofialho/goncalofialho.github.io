@@ -16,6 +16,7 @@ window.onload = () => {
     e.preventDefault();
     const value = spotifyInput.value;
     if (validSpotifyURI(value)) {
+      spotifyInput.disabled = true;
       fetch(`${QUEUE_ENDPOINT}${'add'}`, {
         method: 'POST',
         headers: {
@@ -27,9 +28,11 @@ window.onload = () => {
         })
       }).then( res => {
         spotifyInput.value = '';
+        spotifyInput.disabled = false;
         alert('Song added to the queue!')
       }).catch( res => {
         alert('Something went wrong :(')
+        spotifyInput.disabled = false;
       });
     } else {
       console.log('regex failed');
