@@ -7,7 +7,7 @@ window.onload = () => {
   refreshData();
 
   // refreshing every 2 mins
-  window.setInterval(refreshData, 6000);
+  window.setInterval(refreshData, 90000);
 
   const submitSpotifySong = document.querySelector('.spotifySubmit');
   const spotifyInput = document.querySelector('.spotifyInput');
