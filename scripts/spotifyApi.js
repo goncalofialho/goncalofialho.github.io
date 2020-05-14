@@ -9,6 +9,8 @@ window.onload = () => {
   // refreshing every 2 mins
   window.setInterval(refreshData, 90000);
 
+  document.getElementById('background-button').addEventListener('click', randomizeBackground)
+
   const submitSpotifySong = document.querySelector('.spotifySubmit');
   const spotifyInput = document.querySelector('.spotifyInput');
 
@@ -98,3 +100,7 @@ const refreshData = () => {
   fetchListeners();
   // fetchAndPopulateMusicMetadata("next");
 };
+
+const randomizeBackground = () => {
+  document.body.style.backgroundImage = `url("../videos/gifs/gif${Math.floor(Math.random() * 6) + 1 }.gif")`;
+}
