@@ -72,6 +72,48 @@ button.btn {
   color: white;
   font-size: 14px;
   box-shadow: 0 0 10px var(--light-pink);
+  margin-bottom: 20px;
+  animation: rainbow 3s linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rainbow{
+  100%,0%{
+    box-shadow: 0 0 5px rgb(255,0,0);
+  }
+  8%{
+    box-shadow: 0 0 10px rgb(255,127,0);
+  }
+  16%{
+    box-shadow: 0 0 15px rgb(255,255,0);
+  }
+  25%{
+    box-shadow: 0 0 20px rgb(127,255,0);
+  }
+  33%{
+    box-shadow: 0 0 25px rgb(0,255,0);
+  }
+  41%{
+    box-shadow: 0 0 30px rgb(0,255,127);
+  }
+  50%{
+    box-shadow: 0 0 35px rgb(0,255,255);
+  }
+  58%{
+    box-shadow: 0 0 30px rgb(0,127,255);
+  }
+  66%{
+    box-shadow: 0 0 25px rgb(0,0,255);
+  }
+  75%{
+    box-shadow: 0 0 20px rgb(127,0,255);
+  }
+  83%{
+    box-shadow: 0 0 15px rgb(255,0,255);
+  }
+  91%{
+    box-shadow: 0 0 10px rgb(255,0,127);
+  }
 }
 
 .music-detail .top-side {
