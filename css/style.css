@@ -18,6 +18,7 @@ h5,
 span,
 p {
   text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  font-family: "Quicksand", sans-serif;
 }
 
 a {
@@ -33,6 +34,7 @@ a:hover {
 button.btn {
   background-color: var(--glass-blue);
   border-color: var(--glass-blue);
+  font-family: "Open Sans", sans-serif;
 }
 
 #title {
@@ -94,7 +96,8 @@ button.btn {
 
 .music-detail .bottom-side p.artist {
   font-size: 14px;
-  color: var(--pink);
+  color: #2a4158;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 .music-detail .bottom-side p.album {
