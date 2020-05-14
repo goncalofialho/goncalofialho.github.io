@@ -117,5 +117,5 @@ const refreshData = () => {
 };
 
 const randomizeBackground = () => {
-  document.body.style.backgroundImage = `url("../videos/gifs/gif${Math.floor(Math.random() * 6) + 1 }.gif")`;
+  document.body.style.backgroundImage = `url("./videos/gifs/gif${Math.floor(Math.random() * 6) + 1 }.gif")`;
 }
