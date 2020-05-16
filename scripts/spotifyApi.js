@@ -119,3 +119,9 @@ const refreshData = () => {
 const randomizeBackground = () => {
   document.body.style.backgroundImage = `url("./videos/gifs/gif${Math.floor(Math.random() * 6) + 1 }.gif")`;
 }
+
+const mopidyService = () => {
+  const mopidy = new Mopidy({
+    webSocketUrl: "ws://85.242.148.70:6680/mopidy/ws/",
+  });
+}
