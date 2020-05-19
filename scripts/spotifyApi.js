@@ -1,44 +1,37 @@
 const QUEUE_ENDPOINT = "http://94.63.79.78:8000/queue/";
+mopidy = new Mopidy({
+  webSocketUrl: "ws://85.242.148.70:8081/mopidy/ws/",
+});
+
+mopidy.on("state:online", (e) => {
+  console.log('online!');
+  mopidy.playback.getCurrentTrack().then(track => {
+    console.log('got track', track);
+    updateCurrent(track)
+  });
+})
+
+const submitSpotifySong = document.querySelector('.spotifySubmit');
+const spotifyInput = document.querySelector('.spotifyInput');
 
 window.onload = () => {
-  document
-    .querySelector("#refresh-button")
-    .addEventListener("click", refreshData);
-  refreshData();
+  // document
+  //   .querySelector("#refresh-button")
+  //   .addEventListener("click", refreshData);
+  // refreshData();
 
   // refreshing every 2 mins
-  window.setInterval(refreshData, 90000);
+  // window.setInterval(refreshData, 90000);
 
   document.getElementById('background-button').addEventListener('click', randomizeBackground)
-
-  const submitSpotifySong = document.querySelector('.spotifySubmit');
-  const spotifyInput = document.querySelector('.spotifyInput');
 
   submitSpotifySong.addEventListener("click", (e) => {
     e.preventDefault();
     const value = spotifyInput.value;
     if (validSpotifyURI(value)) {
       spotifyInput.disabled = true;
-      fetch(`${QUEUE_ENDPOINT}${"add"}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          uri: value,
-        }),
-      })
-        .then((res) => {
-          spotifyInput.value = "";
-          spotifyInput.disabled = false;
-          submitSpotifySong.setAttribute("disabled", "true");
-          alert("Song added to the queue!");
-        })
-        .catch((res) => {
-          alert("Something went wrong :(");
-          spotifyInput.disabled = false;
-        });
+      addToQueue(value);
+      console.log('request New song');
     } else {
       console.log("regex failed");
     }
@@ -53,9 +46,15 @@ window.onload = () => {
     }
   });
 
-  const validSpotifyURI = (value) => {
-    return /spotify:track:([a-zA-Z0-9]{22})/.test(value);
-  };
+  // WebSocket Events
+  mopidy.on('event:trackPlaybackStarted', (e) => {
+    updateCurrent(e.tl_track.track);
+  })
+
+};
+
+const validSpotifyURI = (value) => {
+  return /spotify:track:([a-zA-Z0-9]{22})/.test(value);
 };
 
 const fetchAndPopulateMusicMetadata = (type) => {
@@ -97,6 +96,46 @@ const fetchAndPopulateMusicMetadata = (type) => {
     });
 };
 
+const addToQueue = (uri) => {
+  mopidy.tracklist.add({uris: [uri]}).then( () => {
+    spotifyInput.value = "";
+    spotifyInput.disabled = false;
+    submitSpotifySong.setAttribute("disabled", "true");
+    alert("Song added to the queue!");
+  }).catch(res => {
+    alert("Something went wrong :(");
+    spotifyInput.disabled = false;
+  })
+}
+
+const updateCurrent = (track) => {
+  const metadataContainer = document.querySelector(".metadata-container");
+  const refreshButton = document.querySelector("#refresh-button");
+  console.log(track);
+  document.querySelector(
+    `.metadata-container .current .name`
+  ).innerHTML = `<a href="${`https://open.spotify.com/track/${track.uri.split(':')[2]}`}" target="_blank">${track.name}</a>`;
+  document.querySelector(
+    `.metadata-container .current .album`
+  ).innerHTML = `<a href="${`https://open.spotify.com/album/${track.album.uri.split(':')[2]}`}" target="_blank">${track.album.name}</a>`;
+  document.querySelector(
+    `.metadata-container .current .artist`
+  ).innerHTML = track.artists
+    .map(
+      (artist) =>
+        `<a href="${`https://open.spotify.com/artist/${artist.uri.split(':')[2]}`}" target="_blank">${artist.name}</a>`
+    )
+    .join(", ");
+  metadataContainer.classList.remove("loading");
+  refreshButton.style.display = 'none';
+
+  mopidy.library.getImages([[track.uri]]).then(res => {
+    console.log(res);
+    document.querySelector(`.metadata-container .current .album-cover`).src =
+      res[track.uri][0].uri;
+  })
+}
+
 const fetchListeners = () => {
   fetch(
     "https://proxy.zeno.fm/api/stations/f8aqkae5bzzuv/stats/live?include_outputs=true"
@@ -118,10 +157,4 @@ const refreshData = () => {
 
 const randomizeBackground = () => {
   document.body.style.backgroundImage = `url("./videos/gifs/gif${Math.floor(Math.random() * 6) + 1 }.gif")`;
-}
-
-const mopidyService = () => {
-  const mopidy = new Mopidy({
-    webSocketUrl: "ws://85.242.148.70:6680/mopidy/ws/",
-  });
 }
